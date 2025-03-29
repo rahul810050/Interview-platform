@@ -61,3 +61,5 @@ http.route({
 		return new Response("webhook process successfully created", { status: 200 }); // 44 min
 	})
 })
+
+export default http;

@@ -1,8 +1,10 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
-import { ClerkProvider } from "@clerk/nextjs";
+import { ClerkProvider, RedirectToSignIn, SignedIn, SignedOut, SignIn } from "@clerk/nextjs";
 import ConvexClerkProvider from "@/components/providers/ConvexClerkProvider";
+import Navbar from "@/components/Navbar";
+import { ThemeProvider } from "@/components/providers/ThemeProvider";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -26,11 +28,29 @@ export default function RootLayout({
 }>) {
   return (
     <ConvexClerkProvider>
-      <html lang="en">
+      <html lang="en" suppressHydrationWarning>
         <body
           className={`${geistSans.variable} ${geistMono.variable} antialiased`}
         >
-          {children}
+          <ThemeProvider
+            attribute="class"
+            defaultTheme="system"
+            enableSystem
+            disableTransitionOnChange
+          >
+            <SignedIn>
+            <div>
+              <Navbar/>
+              <main className="px-4 sm:px-6 lg:px-8">
+              {children}
+              </main>
+            </div>
+            </SignedIn>
+            <SignedOut>
+              <RedirectToSignIn/>
+            </SignedOut>
+          </ThemeProvider>
+          
         </body>
       </html>
     </ConvexClerkProvider>
