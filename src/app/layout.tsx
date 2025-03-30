@@ -5,6 +5,8 @@ import { ClerkProvider, RedirectToSignIn, SignedIn, SignedOut, SignIn } from "@c
 import ConvexClerkProvider from "@/components/providers/ConvexClerkProvider";
 import Navbar from "@/components/Navbar";
 import { ThemeProvider } from "@/components/providers/ThemeProvider";
+import { Toaster } from "react-hot-toast";
+// import "@stream-io/video-react-sdk/dist/css/style.css";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -50,6 +52,8 @@ export default function RootLayout({
               <RedirectToSignIn/>
             </SignedOut>
           </ThemeProvider>
+
+          <Toaster/>
           
         </body>
       </html>

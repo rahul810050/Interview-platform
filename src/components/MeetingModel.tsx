@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "./ui/dialog";
 import { Input } from "./ui/input";
 import { Button } from "./ui/button";
-// import useMeetingActions from "@/hooks/useMeetingActions";
+import useMeetingActions from "@/hooks/useMeetingActions";
 
 interface MeetingModalProps {
   isOpen: boolean;
@@ -13,19 +13,20 @@ interface MeetingModalProps {
 
 function MeetingModal({ isOpen, onClose, title, isJoinMeeting }: MeetingModalProps) {
   const [meetingUrl, setMeetingUrl] = useState("");
-  // const { createInstantMeeting, joinMeeting } = useMeetingActions();
+  const { createInstantMeeting, joinMeeting } = useMeetingActions();
+
 
   const handleStart = () => {
-  //   if (isJoinMeeting) {
-  //     // if it's a full URL extract meeting ID
-  //     const meetingId = meetingUrl.split("/").pop();
-  //     if (meetingId) joinMeeting(meetingId);
-  //   } else {
-  //     createInstantMeeting();
-  //   }
+    if (isJoinMeeting) {
+      // if it's a full URL extract meeting ID
+      const meetingId = meetingUrl.split("/").pop();
+      if (meetingId) joinMeeting(meetingId);
+    } else {
+      createInstantMeeting();
+    }
 
-  //   setMeetingUrl("");
-  //   onClose();
+    setMeetingUrl("");
+    onClose();
   };
 
   return (
