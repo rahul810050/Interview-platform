@@ -1,34 +1,34 @@
 import { DeviceSettings, useCall, VideoPreview } from '@stream-io/video-react-sdk';
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react';
 import { Card } from './ui/card';
 import { CameraIcon, MicIcon, SettingsIcon } from 'lucide-react';
 import { Switch } from './ui/switch';
 import { Button } from './ui/button';
 
-function MeetingSetup({onSetupComplete}: {onSetupComplete: ()=> void}) {
-	const [isCameraDisabled, setIsCameraDisabled] = useState(true);
-	const [isMicDisabled, setIsMicDisabled] = useState(false);
-	const call = useCall();
-	if(!call) return null;
+function MeetingSetup({ onSetupComplete }: { onSetupComplete: () => void }) {
+  const [isCameraDisabled, setIsCameraDisabled] = useState(true);
+  const [isMicDisabled, setIsMicDisabled] = useState(false);
+  const call = useCall();
 
-	useEffect(()=> {
-		if(isCameraDisabled) call.camera.disable();
-		else call.camera.enable()
-	}, [isCameraDisabled, call.camera]);
+  if (!call) return null;
 
+  useEffect(() => {
+    if (isCameraDisabled) call.camera?.disable();
+    else call.camera?.enable();
+  }, [isCameraDisabled, call]);
 
-	useEffect(()=> {
-		if(isMicDisabled) call.microphone.disable();
-		else call.microphone.enable();
-	}, [isMicDisabled, call.microphone]);
+  useEffect(() => {
+    if (isMicDisabled) call.microphone?.disable();
+    else call.microphone?.enable();
+  }, [isMicDisabled, call]);
 
-	const handleJoin = async ()=> {
-		await call.join();
-		onSetupComplete();
-	}
+  const handleJoin = async () => {
+    await call.join();
+    onSetupComplete();
+  };
 
-	return (
-		<div className="min-h-screen flex items-center justify-center p-6 bg-background/95">
+  return (
+    <div className="min-h-screen flex items-center justify-center p-6 bg-background/95">
       <div className="w-full max-w-[1200px] mx-auto">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           {/* VIDEO PREVIEW CONTAINER */}
@@ -41,23 +41,22 @@ function MeetingSetup({onSetupComplete}: {onSetupComplete: ()=> void}) {
             {/* VIDEO PREVIEW */}
             <div className="mt-4 flex-1 min-h-[400px] rounded-xl overflow-hidden bg-muted/50 border relative">
               <div className="absolute inset-0">
-                <VideoPreview className="h-full w-full" />
+                <VideoPreview className="h-full w-full items-center flex justify-center " />
               </div>
             </div>
           </Card>
 
           {/* CARD CONTROLS */}
-
           <Card className="md:col-span-1 p-6">
             <div className="h-full flex flex-col">
-              {/* MEETING DETAILS  */}
+              {/* MEETING DETAILS */}
               <div>
                 <h2 className="text-xl font-semibold mb-1">Meeting Details</h2>
                 <p className="text-sm text-muted-foreground break-all">{call.id}</p>
               </div>
 
               <div className="flex-1 flex flex-col justify-between">
-                <div className="spacey-6 mt-8">
+                <div className="space-y-6 mt-8">
                   {/* CAM CONTROL */}
                   <div className="flex items-center justify-between">
                     <div className="flex items-center gap-3">
@@ -67,7 +66,7 @@ function MeetingSetup({onSetupComplete}: {onSetupComplete: ()=> void}) {
                       <div>
                         <p className="font-medium">Camera</p>
                         <p className="text-sm text-muted-foreground">
-                          {isCameraDisabled ? "Off" : "On"}
+                          {isCameraDisabled ? 'Off' : 'On'}
                         </p>
                       </div>
                     </div>
@@ -86,7 +85,7 @@ function MeetingSetup({onSetupComplete}: {onSetupComplete: ()=> void}) {
                       <div>
                         <p className="font-medium">Microphone</p>
                         <p className="text-sm text-muted-foreground">
-                          {isMicDisabled ? "Off" : "On"}
+                          {isMicDisabled ? 'Off' : 'On'}
                         </p>
                       </div>
                     </div>
@@ -126,7 +125,7 @@ function MeetingSetup({onSetupComplete}: {onSetupComplete: ()=> void}) {
         </div>
       </div>
     </div>
-	)
+  );
 }
 
-export default MeetingSetup
+export default MeetingSetup;

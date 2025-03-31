@@ -16,7 +16,7 @@ function MeetingPage() {
 	const [isSetupComplete, setIsSetupComplete] = useState(false)
 	
 
-	if(!isLoaded || !isCallLoading) return <LoaderUI/>;
+	if(!isLoaded || isCallLoading) return <LoaderUI/>;
 
 	if(!call) {
 		return(
@@ -27,9 +27,9 @@ function MeetingPage() {
 	}
 
 	return (
-		<StreamCall>
+		<StreamCall call={call}>
 			<StreamTheme>
-				{isSetupComplete ? (
+				{!isSetupComplete ? (
 					<MeetingSetup onSetupComplete={()=> setIsSetupComplete(true)} />
 				) : (
 					<MeetingRoom/>

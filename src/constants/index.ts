@@ -89,6 +89,12 @@ export const CODING_QUESTIONS: CodeQuestion[] = [
         
     }
 }`,
+      cpp: `#include<bits/stdc++.h>
+using namespace std;
+
+int main(){
+// write your solution here
+}`
     },
     constraints: [
       "2 ≤ nums.length ≤ 104",
@@ -124,8 +130,14 @@ export const CODING_QUESTIONS: CodeQuestion[] = [
     public void reverseString(char[] s) {
         // Write your solution here
         
-    }
+    },
 }`,
+      cpp: `#include<bits/stdc++.h>
+using namespace std;
+
+int main(){
+// write your solution here
+}`
     },
   },
   {
@@ -160,6 +172,12 @@ export const CODING_QUESTIONS: CodeQuestion[] = [
         
     }
 }`,
+      cpp: `#include<bits/stdc++.h>
+using namespace std;
+
+int main(){
+// write your solution here
+}`
     },
   },
 ];
@@ -168,6 +186,7 @@ export const LANGUAGES = [
   { id: "javascript", name: "JavaScript", icon: "/javascript.png" },
   { id: "python", name: "Python", icon: "/python.png" },
   { id: "java", name: "Java", icon: "/java.png" },
+  { id: "cpp", name: "cpp", icon: "/cpp.png" },
 ] as const;
 
 export interface CodeQuestion {
@@ -183,6 +202,7 @@ export interface CodeQuestion {
     javascript: string;
     python: string;
     java: string;
+    cpp: string
   };
   constraints?: string[];
 }
