@@ -10,6 +10,7 @@ import { api } from "../../../../convex/_generated/api";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import MeetingModel from "@/components/MeetingModel";
+import LoaderUI from "@/components/LoaderUI";
 
 export default function Home() {
   const router = useRouter();
@@ -32,6 +33,7 @@ export default function Home() {
         router.push(`/${title.toLowerCase()}`)
     }
   }
+  if(isLoading) return <LoaderUI/>
   return (
     <div className="container max-w-5xl mx-auto p-6">
       {/* WELCOME SECTION */}
